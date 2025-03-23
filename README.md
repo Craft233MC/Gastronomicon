@@ -33,8 +33,8 @@ API 文档可以在 Wiki 中查询 <https://schn.pages.dev/gastronomicon/custom-
 
 见原文[https://github.com/SchnTgaiSpock/Gastronomicon#changelog]
 
-## Credits
+## 鸣谢
 
-Some head textures were taken and/or modified from [minecraft-heads.com](https://minecraft-heads.com/)
+头颅纹理来自 [minecraft-heads.com](https://minecraft-heads.com/)
 
 [![minecraft-heads banner](https://images.minecraft-heads.com/banners/minecraft-heads.webp)](https://minecraft-heads.com/)
