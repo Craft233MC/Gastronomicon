@@ -80,7 +80,7 @@ public class Gastronomicon extends AbstractAddon {
                 info("检测到服务器已安装 SlimeHUD!");
                 info("接入相关功能...");
                 SlimeHUDSetup.setup();
-            } catch (NoClassDefFoundError e) {
+            } catch (Throwable e) {
                 warn("该服务器安装的 SlimeHUD 版本不兼容");
                 warn("请更新 SlimeHUD 至最新版本!");
             }
@@ -99,7 +99,7 @@ public class Gastronomicon extends AbstractAddon {
                 info("检测到服务器已安装 动力科技(DynaTech)!");
                 info("正在向动力科技添加相关作物...");
                 DynaTechSetup.setup();
-            } catch (NoClassDefFoundError e) {
+            } catch (Throwable e) {
                 warn("该服务器安装的 DynaTech 版本不兼容");
                 warn("请更新 DynaTech 至最新版本!");
             }
