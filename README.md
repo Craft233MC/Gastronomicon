@@ -21,7 +21,7 @@
 - Paper 或衍生服务端
 - Slimefun DEV 1040 (RC 33) 或更新版本
 - Minecraft 1.17+
-- Java 16+
+- Java 17+
 
 *ExoticGarden 不是必须的，但强烈建议安装!*
 
@@ -37,4 +37,4 @@ API 文档可以在 Wiki 中查询 <https://schn.pages.dev/gastronomicon/custom-
 
 Some head textures were taken and/or modified from [minecraft-heads.com](https://minecraft-heads.com/)
 
-[![minecraft-heads banner](https://minecraft-heads.com/images/banners/minecraft-heads_fullbanner_468x60.png)](https://minecraft-heads.com/)
+[![minecraft-heads banner](https://images.minecraft-heads.com/banners/minecraft-heads.webp)](https://minecraft-heads.com/)
