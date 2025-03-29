@@ -2,7 +2,7 @@ package io.github.schntgaispock.gastronomicon.core.listeners;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.api.trees.TreeStructure;
-import net.guizhanss.guizhanlib.slimefun.utils.NewBlockStorageUtil;
+import net.guizhanss.guizhanlib.slimefuncn.utils.NewBlockStorageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;

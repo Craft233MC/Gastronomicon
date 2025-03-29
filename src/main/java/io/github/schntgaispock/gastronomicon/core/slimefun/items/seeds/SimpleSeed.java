@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import lombok.Getter;
-import net.guizhanss.guizhanlib.slimefun.utils.NewBlockStorageUtil;
+import net.guizhanss.guizhanlib.slimefuncn.utils.NewBlockStorageUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
