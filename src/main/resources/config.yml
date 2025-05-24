@@ -6,7 +6,7 @@ options:
 disable-exotic-garden-recipes: false
 
 # 是否禁用向动力科技(DynaTech)的培育仓添加美食家(Gastronomicon)的植物。
-disable-dynatech-integration: false
+disable-dynatech-integration: true
 
 # 制作完美食物的几率 (0-1)
 perfect-food-max-chance: 0.25
