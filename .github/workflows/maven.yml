@@ -42,7 +42,8 @@ jobs:
           echo "PATH_DIR=$PWD" >> $GITHUB_ENV
       - name: replace depends
         run: |
-          export NEW="'"$(ls | grep InfinityLib)"'"
+          mv InfinityLib*/* ./InfinityLib.jar
+          export NEW=InfinityLib.jar
           cp ${NEW}/${NEW} ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/*/
           
           cd ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/
