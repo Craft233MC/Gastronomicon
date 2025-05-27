@@ -124,7 +124,7 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
         if (!canCatch(l))
             return false;
 
-        Gastronomicon.scheduleSyncDelayedTask(() -> {
+        Gastronomicon.scheduleSyncDelayedTaskAtLocation(() -> {
             if (!NewBlockStorageUtil.hasBlock(l)) {
                 return;
             }
@@ -133,7 +133,7 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
                 l.getWorld().playSound(l, Sound.ENTITY_EVOKER_FANGS_ATTACK, SoundCategory.BLOCKS, 1f, 1.5f);
                 triggeredTraps.put(l, true);
             }
-        }, 20 * (long) NumberUtil.clamp(ThreadLocalRandom.current().nextGaussian(120, 30), 60, 180));
+        }, 20 * (long) NumberUtil.clamp(ThreadLocalRandom.current().nextGaussian(120, 30), 60, 180), l);
 
         return true;
     }

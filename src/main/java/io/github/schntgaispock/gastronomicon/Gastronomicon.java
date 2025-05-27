@@ -3,14 +3,15 @@ package io.github.schntgaispock.gastronomicon;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.tcoded.folialib.FoliaLib;
+import com.tcoded.folialib.wrapper.task.WrappedTask;
 import net.guizhanss.guizhanlib.slimefun.addon.Scheduler;
 import net.guizhanss.minecraft.guizhanlib.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
-import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitTask;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.core.AddonConfig;
@@ -33,6 +34,7 @@ import java.util.logging.Level;
 public class Gastronomicon extends AbstractAddon {
 
     private static @Getter Gastronomicon instance;
+    private static FoliaLib foliaLib;
 
     @Getter
     private Scheduler scheduler;
@@ -46,8 +48,9 @@ public class Gastronomicon extends AbstractAddon {
     @Override
     @SuppressWarnings("deprecation")
     public void enable() {
+        foliaLib = new FoliaLib(this);
         instance = this;
-        scheduler = new Scheduler(this);
+//        scheduler = new Scheduler(this);
 
         if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
             getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
@@ -56,9 +59,9 @@ public class Gastronomicon extends AbstractAddon {
             return;
         }
 
-        if (getConfig().getBoolean("options.auto-update") && getPluginVersion().startsWith("Build")) {
-            GuizhanUpdater.start(this, getFile(), "SlimegunGuguProject", "Gastronomicon", "master");
-        }
+//        if (getConfig().getBoolean("options.auto-update") && getPluginVersion().startsWith("Build")) {
+//            GuizhanUpdater.start(this, getFile(), "SlimegunGuguProject", "Gastronomicon", "master");
+//        }
 
         getLogger().info("#======================================#");
         getLogger().info("#    Gastronomicon by SchnTgaiSpock    #");
@@ -127,12 +130,12 @@ public class Gastronomicon extends AbstractAddon {
         return getInstance().getServer().getPluginManager().isPluginEnabled(name);
     }
 
-    public static int scheduleSyncDelayedTask(Runnable runnable, long delay) {
-        return Bukkit.getScheduler().scheduleSyncDelayedTask(getInstance(), runnable, delay);
+    public static WrappedTask scheduleSyncDelayedTask(Runnable runnable, long delay) {
+        return getFoliaLib().getScheduler().runLater(runnable, delay);
     }
 
-    public static BukkitTask scheduleSyncRepeatingTask(Runnable runnable, long delay, long interval) {
-        return Bukkit.getScheduler().runTaskTimer(getInstance(), runnable, delay, interval);
+    public static WrappedTask scheduleSyncRepeatingTask(Runnable runnable, long delay, long interval) {
+        return getFoliaLib().getScheduler().runTimer(runnable, delay, interval);
     }
 
     public static boolean checkPermission(Player player, @Nonnull String permissionNode, @Nullable String message) {
@@ -175,5 +178,17 @@ public class Gastronomicon extends AbstractAddon {
                 .asComponent())
             .asComponent();
         player.sendMessage(text);
+    }
+
+    public static FoliaLib getFoliaLib() {
+        return foliaLib;
+    }
+
+    public static WrappedTask scheduleSyncDelayedTaskAtLocation(Runnable runnable, long delay, Location location) {
+        return getFoliaLib().getScheduler().runLater(runnable, delay);
+    }
+
+    public static WrappedTask scheduleSyncRepeatingTaskAtLocation(Runnable runnable, long delay, long interval, Location location) {
+        return getFoliaLib().getScheduler().runTimer(runnable, delay, interval);
     }
 }

@@ -43,12 +43,12 @@ public class SeedListener implements Listener {
             case PUMPKIN, MELON:
                 // Have to schedule it later because there is no way to tell where the stem that
                 // grew the plant is before its grown.
-                Bukkit.getScheduler().runTaskLater(Gastronomicon.getInstance(), () -> {
+                Gastronomicon.scheduleSyncDelayedTaskAtLocation(() -> {
                     for (BlockFace face : new BlockFace[] { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
-                        BlockFace.WEST }) {
+                            BlockFace.WEST }) {
                         final Block checking = e.getBlock().getRelative(face);
                         if (checking.getType() != Material.ATTACHED_MELON_STEM
-                            && checking.getType() != Material.ATTACHED_PUMPKIN_STEM) {
+                                && checking.getType() != Material.ATTACHED_PUMPKIN_STEM) {
                             continue;
                         }
 
@@ -59,7 +59,7 @@ public class SeedListener implements Listener {
                             break;
                         }
                     }
-                }, 1);
+                },1 , e.getBlock().getLocation());
                 break;
 
             default:

@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,5 +21,46 @@ jobs:
           distribution: 'temurin'
           java-version: 17
           cache: 'maven'
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Download InfinityLib from artifact
+        uses: dawidd6/action-download-artifact@v9
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: maven.yml
+          workflow_conclusion: success
+          repo: Craft233MC/InfinityLib
+          use_unzip: true
+      - name: "first build: download depends file"
+        run: |
+          rm -rf ~/.m2/repository/com/github/SlimefunGuguProject
+          mvn package --file pom.xml
+          echo "PATH_DIR=$PWD" >> $GITHUB_ENV
+      - name: replace depends
+        run: |
+          export NEW=$(ls | grep InfinityLib)
+          cp ${NEW}/${NEW} ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/*/
+          
+          cd ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/
+          export OLD=$(ls)
+          cd ${OLD}
+          rm -rf InfinityLib-${OLD}.jar InfinityLib-${OLD}.jar.sha1
+          
+          echo $(sha1sum ${NEW}) >> InfinityLib-${OLD}.jar.sha1
+          mv ${NEW} InfinityLib-${OLD}.jar
       - name: Build with Maven
         run: mvn package --file pom.xml
+      - name: select SlimeFun.jar
+        run: |
+          cd target
+          rm -rf original*
+          echo "FILE=$(ls | grep jar)" >> $GITHUB_ENV
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.FILE }}
+          path: target/${{ env.FILE }}
