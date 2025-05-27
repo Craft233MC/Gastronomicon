@@ -44,7 +44,7 @@ jobs:
         run: |
           mv InfinityLib*/* ./InfinityLib.jar
           export NEW=InfinityLib.jar
-          cp ${NEW}/${NEW} ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/*/
+          cp ${NEW} ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/*/
           
           cd ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/
           export OLD=$(ls)
