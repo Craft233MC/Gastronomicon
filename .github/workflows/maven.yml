@@ -43,15 +43,15 @@ jobs:
       - name: replace depends
         run: |
           export NEW=$(ls | grep InfinityLib)
-          cp ${NEW}/${NEW} ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/*/
+          cp '${NEW}'/'${NEW}' ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/*/
           
           cd ~/.m2/repository/com/github/SlimefunGuguProject/InfinityLib/
           export OLD=$(ls)
           cd ${OLD}
           rm -rf InfinityLib-${OLD}.jar InfinityLib-${OLD}.jar.sha1
           
-          echo $(sha1sum ${NEW}) >> InfinityLib-${OLD}.jar.sha1
-          mv ${NEW} InfinityLib-${OLD}.jar
+          echo $(sha1sum '${NEW}') >> InfinityLib-${OLD}.jar.sha1
+          mv '${NEW}' InfinityLib-${OLD}.jar
       - name: Build with Maven
         run: mvn package --file pom.xml
       - name: select SlimeFun.jar
