@@ -55,7 +55,7 @@ jobs:
           mv ${NEW} InfinityLib-${OLD}.jar
       - name: Build with Maven
         run: mvn package --file pom.xml
-      - name: select SlimeFun.jar
+      - name: select jar
         run: |
           cd target
           rm -rf original*
