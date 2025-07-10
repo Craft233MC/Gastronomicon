@@ -185,10 +185,10 @@ public class Gastronomicon extends AbstractAddon {
     }
 
     public static WrappedTask scheduleSyncDelayedTaskAtLocation(Runnable runnable, long delay, Location location) {
-        return getFoliaLib().getScheduler().runLater(runnable, delay);
+        return getFoliaLib().getScheduler().runAtLocationLater(location, runnable, delay);
     }
 
     public static WrappedTask scheduleSyncRepeatingTaskAtLocation(Runnable runnable, long delay, long interval, Location location) {
-        return getFoliaLib().getScheduler().runTimer(runnable, delay, interval);
+        return getFoliaLib().getScheduler().runAtLocationTimer(location, runnable, delay, interval);
     }
 }
