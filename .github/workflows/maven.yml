@@ -57,6 +57,7 @@ jobs:
         run: mvn package --file pom.xml
       - name: select jar
         run: |
+          mvn clean package
           cd target
           rm -rf original*
           echo "FILE=$(ls | grep jar)" >> $GITHUB_ENV
